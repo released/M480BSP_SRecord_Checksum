@@ -12,29 +12,29 @@ update @ 2021/07/15
 ![image](https://github.com/released/M480BSP_SRecord_Checksum/blob/main/setting.jpg)
 
 
-	generateChecksum.cmd
+	- generateChecksum.cmd
 	
-		load file , and declare 0x0000 to 0x1F000 (assume MCU flash is 0x20000 , last page (0x20000 - 0x1000) will store checksum)
+		.load file , and declare 0x0000 to 0x1F000 (assume MCU flash is 0x20000 , last page (0x20000 - 0x1000) will store checksum)
 	
-		fill 0xFF in to the filed (0x0000 to 0x1F000)
+		.fill 0xFF in to the filed (0x0000 to 0x1F000)
 		
-		use CRC32 , and calculate checksum , put under region : 0x1FFFC 0x20000
+		.use CRC32 , and calculate checksum , put under region : 0x1FFFC 0x20000
 		
-		display checksum hex result , under KEIL compile window
+		.display checksum hex result , under KEIL compile window
 		
 ![image](https://github.com/released/M480BSP_SRecord_Checksum/blob/main/compile.jpg)
 		
 		
-	generateCRCbinary.cmd
+	- generateCRCbinary.cmd
 	
-		process same as previos checksum flow 
+		.process same as previous checksum flow 
 		
-		generate the final binary , with checksum in last 4 bytes
+		.generate the final binary , with checksum in last 4 bytes
 
 3. need to use ICP tool , to programming the complete binary (128K) to MCU
 
-4. below is log message screen , 
+4. application will calculate checksum , with MCU flash range 0x20000 - 0x1000 , and read checksum store in application 
+
+5. below is log message screen , 
 
 ![image](https://github.com/released/M480BSP_SRecord_Checksum/blob/main/log.jpg)
-
-
